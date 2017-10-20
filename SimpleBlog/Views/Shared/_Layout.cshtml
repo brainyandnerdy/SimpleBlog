@@ -8,6 +8,22 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>Welcome back, @User.Identity.Name</p>
+        <a href="@Url.RouteUrl("logout")">Logout</a>
+
+        if(User.IsInRole("admin"))
+        {
+            <a href="@Url.Action("index", "Posts", new {area="admin"})">View posts in admin</a>
+        }
+            }
+            else
+            {
+        <a href="@Url.RouteUrl("login")">Login</a>
+    }
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
